@@ -30,10 +30,23 @@ def p3():
 
     return result
 
+def p4():
+    def is_palindromic(num):
+        num = str(num)
+        return num[:] == num[::-1]
+
+    result = 0
+    for i in range(999, 100, -1):
+        for j in range(i, 1000):
+            num = i * j
+            if is_palindromic(num):
+                if num > result:
+                    result = num
+
+    print result
+
 def run():
-    p1()
-    p2()
-    p3()
+    p4()
 
 if __name__ == "__main__":
     run()
