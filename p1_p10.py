@@ -45,8 +45,16 @@ def p4():
 
     print result
 
-def run():
-    p4()
+def p5():
+    result = 20
+    while result % 11 or result % 12 or result % 13 or \
+            result % 14 or result % 15 or result % 16 or \
+            result % 17 or result % 18 or result % 19 or result % 20:
+        result = result + 20
+    print result
 
-if __name__ == "__main__":
+def run():
+    p5()
+
+if __name__ == "__maresultn__":
     run()
