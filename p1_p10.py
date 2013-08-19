@@ -43,18 +43,34 @@ def p4():
                 if num > result:
                     result = num
 
-    print result
+    return result
 
+@timeit
 def p5():
     result = 20
     while result % 11 or result % 12 or result % 13 or \
             result % 14 or result % 15 or result % 16 or \
             result % 17 or result % 18 or result % 19 or result % 20:
         result = result + 20
-    print result
+    return result
+
+@timeit
+def p5_update():
+    result = 20
+    for i in range(2, 21):
+        if result % i == 0:
+            continue
+
+        for j in range(2, 21):
+            if (result * j) % i == 0:
+                result = result * j
+                break
+
+    return result
 
 def run():
     p5()
+    p5_update()
 
-if __name__ == "__maresultn__":
+if __name__ == "__main__":
     run()
