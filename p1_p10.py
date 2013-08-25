@@ -68,9 +68,25 @@ def p5_update():
 
     return result
 
+@timeit(times=100000)
+def p6():
+    n = 100
+    sum_of_squares = sum([(item) * (item) for item in range(1, n + 1)])
+    square_of_sum = pow((1 + n) * n / 2, 2)
+
+    return square_of_sum - sum_of_squares
+
+@timeit(times=100000)
+def p6_update():
+    n = 100
+    sum_of_squares = n * (n + 1) * (2 * n + 1) * 1 / 6
+    square_of_sum = pow((1 + n) * n / 2, 2)
+
+    return square_of_sum - sum_of_squares
+
 def run():
-    p5()
-    p5_update()
+    p6()
+    p6_update()
 
 if __name__ == "__main__":
     run()
