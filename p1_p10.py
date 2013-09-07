@@ -153,8 +153,22 @@ def p8():
     return result
 
 
+@timeit(times=1)
+def p9():
+
+    target = 1000
+
+    for mid in xrange(2, target / 2 + 1):
+        for pre in xrange(1, mid):
+            for end in xrange(mid + 1, target):
+
+                if pre + mid + end == 1000:
+                    if pre * pre + mid * mid == end * end:
+                        return pre * mid * end
+    return 0
+
 def run():
-    p8()
+    p9()
 
 if __name__ == "__main__":
     run()
