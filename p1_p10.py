@@ -167,8 +167,27 @@ def p9():
                         return pre * mid * end
     return 0
 
+@timeit(times=1)
+def p10():
+
+    target = 2000000
+    not_prime = set()
+    for i in xrange(2, target / 2):
+        for j in xrange(i, target / 2):
+            if i * j > target:
+                break
+            not_prime.add(i * j)
+
+    result = 0
+    for i in xrange(2, target):
+        if i in not_prime:
+            continue
+        result = result + i
+
+    return result
+
 def run():
-    p9()
+    p10()
 
 if __name__ == "__main__":
     run()
