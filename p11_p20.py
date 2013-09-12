@@ -44,8 +44,23 @@ def p11():
 
     return result
 
+
+@timeit(times=1)
+def p12():
+
+    def get_factors(n):
+        return set(reduce(list.__add__,
+                            ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
+
+    n = 1
+    m = 2
+    while len(get_factors(n + m)) <= 500:
+        n, m = n + m, m + 1
+
+    return n + m
+
 def run():
-    p11()
+    p12()
 
 if __name__ == "__main__":
     run()
