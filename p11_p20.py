@@ -59,7 +59,30 @@ def p12():
 
     return n + m
 
+
+@timeit(times=1)
+def p12_old():
+    def get_factors_num(n):
+        count = 2
+        if n == 0 or n == 1:
+            return 1
+
+        for i in range(2, n / 2 + 1):
+            if n % i == 0:
+                count = count + 1
+
+        return count
+
+    n = 1
+    m = 2
+    while get_factors_num(n + m) <= 500:
+        n, m = n + m, m + 1
+
+    return n + m
+
+
 def run():
+    p12_old()
     p12()
 
 if __name__ == "__main__":
