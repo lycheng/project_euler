@@ -80,10 +80,34 @@ def p12_old():
 
     return n + m
 
+@timeit(times=1)
+def p13():
+    nums = []
+    with open("./problems/p13") as f:
+        for line in f:
+            nums.append(line[:-1])
+
+    result = 0
+    for index in xrange(len(nums[0])):
+        result = result * 10
+        for num in nums:
+            result = result + int(num[index])
+
+        if len(str(result)) >= 12:
+
+            extra_sum = 0
+            for i in range(2):
+                extra_sum = extra_sum * 10
+                index = index + 1
+                for num in nums:
+                    extra_sum = extra_sum + int(num[index])
+
+            result = result + extra_sum / 100
+
+            return str(result)[0:10]
 
 def run():
-    p12_old()
-    p12()
+    p13()
 
 if __name__ == "__main__":
     run()
