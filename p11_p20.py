@@ -93,17 +93,7 @@ def p13():
         for num in nums:
             result = result + int(num[index])
 
-        if len(str(result)) >= 12:
-
-            extra_sum = 0
-            for i in range(2):
-                extra_sum = extra_sum * 10
-                index = index + 1
-                for num in nums:
-                    extra_sum = extra_sum + int(num[index])
-
-            result = result + extra_sum / 100
-
+        if len(str(result)) >= 14:
             return str(result)[0:10]
 
 def run():
