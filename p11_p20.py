@@ -96,8 +96,35 @@ def p13():
         if len(str(result)) >= 14:
             return str(result)[0:10]
 
+
+@timeit(times=1)
+def p14():
+
+    cache = {1: 1}
+
+    def get_len_of_chain(n):
+        if n in cache:
+            pass
+        elif n % 2:
+            cache[n] = get_len_of_chain(n * 3 + 1) + 1
+        else:
+            cache[n] = get_len_of_chain(n / 2) + 1
+
+        return cache[n]
+
+    max_len = 0
+
+    for i in xrange(2, 1000000):
+        current_len = get_len_of_chain(i)
+        if current_len > max_len:
+            max_len = current_len
+            result = i
+
+    return result
+
+
 def run():
-    p13()
+    p14()
 
 if __name__ == "__main__":
     run()
