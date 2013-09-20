@@ -123,8 +123,27 @@ def p14():
     return result
 
 
+@timeit(times=1)
+def p15():
+
+    grid_len = 20 + 1
+
+    grid = [[1] * (grid_len) for row in range(grid_len)]
+
+    def get_routers(i, j):
+        if not i or not j:
+            return 1
+
+        return grid[i - 1][j] + grid[i][j - 1]
+
+    for i in range(grid_len):
+        for j in range(grid_len):
+            grid[i][j] = get_routers(i, j)
+
+    return grid[-1][-1]
+
 def run():
-    p14()
+    p15()
 
 if __name__ == "__main__":
     run()
