@@ -151,8 +151,40 @@ def p16():
     rv = reduce(lambda x, y: x + y ,[int(i) for i in str(2 ** 1000)]) # slowest
     return rv
 
+
+@timeit(times=1)
+def p17():
+
+    single = 'one,two,three,four,five,six,seven,eight,nine'.split(',')
+    less_than_twenty = 'ten,eleven,twelve,thirteen,fourteen,fifteen,sixteen,seventeen,eighteen,nineteen'.split(',')
+    more_than_twenty = 'twenty,thirty,forty,fifty,sixty,seventy,eighty,ninety'.split(',')
+
+    def get_num_of_letter(num):
+        if num == 0:
+            return 0
+
+        if num <= 9:
+            return len(single[num - 1])
+
+        elif num <= 19:
+            return len(less_than_twenty[num - 10])
+
+        elif num <= 99:
+            return len(more_than_twenty[num / 10 - 2]) + get_num_of_letter(num % 10)
+
+        elif num >= 100:
+            return len(single[num / 100 - 1]) + len('hundred') + len('and') + get_num_of_letter(num % 100)
+
+    total_len = 0
+    for num in range(1, 1000):
+        total_len = total_len + get_num_of_letter(num)
+
+    total_len = total_len + len('one thousand') - 1
+    total_len = total_len - len('and') * 9
+    return total_len
+
 def run():
-    p16()
+    p17()
 
 if __name__ == "__main__":
     run()
