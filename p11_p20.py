@@ -142,8 +142,17 @@ def p15():
 
     return grid[-1][-1]
 
+
+@timeit(times=100000)
+def p16():
+
+    # rv = sum([int(x) for x in str(2 ** 1000)]) # little faster than generator
+    # rv = sum(int(x) for x in str(2 ** 1000))
+    rv = reduce(lambda x, y: x + y ,[int(i) for i in str(2 ** 1000)]) # slowest
+    return rv
+
 def run():
-    p15()
+    p16()
 
 if __name__ == "__main__":
     run()
