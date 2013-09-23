@@ -183,8 +183,27 @@ def p17():
     total_len = total_len - len('and') * 9
     return total_len
 
+
+@timeit(times=1)
+def p18():
+
+    src = []
+    with open('problems/p18') as fp:
+        for line in fp:
+            nums = [int(i) for i in line.split(' ')]
+            src.append(nums)
+
+    depth = len(src)
+    for i in range(depth - 2, -1, -1):
+
+        for j in range(len(src[i])):
+            src[i][j] = max(src[i+1][j], src[i+1][j+1]) + src[i][j]
+
+    return src[0][0]
+
+
 def run():
-    p17()
+    p18()
 
 if __name__ == "__main__":
     run()
