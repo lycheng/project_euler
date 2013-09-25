@@ -5,6 +5,7 @@ __author__ = "lycheng"
 __email__ = "lycheng997@gmail.com"
 
 from utils import timeit
+from datetime import date
 
 @timeit(times=1)
 def p11():
@@ -202,8 +203,26 @@ def p18():
     return src[0][0]
 
 
+@timeit(times=1)
+def p19():
+
+    beg_year = 1901
+    end_year = 2001
+
+    num = 0
+
+    for year in range(beg_year, end_year):
+        for month in range(1, 13):
+            cur_date = date(year, month, 1)
+            if cur_date.isoweekday() == 7:
+                num = num + 1
+
+    return num
+
+
 def run():
-    p18()
+    p19()
+
 
 if __name__ == "__main__":
     run()
