@@ -220,8 +220,14 @@ def p19():
     return num
 
 
+@timeit(times=1)
+def p20():
+    n = 100
+    return sum([int(s) for s in str(reduce(lambda x, y: x * y, range(1, n + 1)))])
+
+
 def run():
-    p19()
+    p20()
 
 
 if __name__ == "__main__":
