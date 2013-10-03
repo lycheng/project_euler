@@ -6,6 +6,9 @@ __email__ = "lycheng997@gmail.com"
 
 from utils import timeit
 
+from requests import get
+from string import ascii_uppercase
+
 @timeit(times=1)
 def p21():
 
@@ -34,8 +37,36 @@ def p21():
     return result
 
 
+@timeit(times=1)
+def p22():
+
+    def get_name_value(name):
+        """
+        get value of a name
+        """
+        value = sum([ascii_uppercase.index(letter) + 1
+            for letter in name])
+        return value
+
+    url = "http://projecteuler.net/project/names.txt"
+    try:
+        content = get(url, timeout=1).content
+    except:
+        with open("./problems/p22") as fp:
+            content = fp.readline()[0:-1]  # 去除换行符
+
+    names = content[1:-1].split('","')
+    names.sort()
+
+    score = 0
+    for index, name in enumerate(names):
+        score = score + get_name_value(name) * (index + 1)
+
+    return score
+
+
 def run():
-    p21()
+    p22()
 
 
 if __name__ == "__main__":
