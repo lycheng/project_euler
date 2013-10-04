@@ -96,8 +96,33 @@ def p23():
     return result
 
 
+@timeit(times=1)
+def p24():
+
+    target = 1000000 - 1
+    num_of_digits = 10
+
+    digits = range(num_of_digits)
+
+    def factorial(n):
+        rv = 1
+        if n > 0:
+            rv = reduce(lambda x, y: x * y, range(1, n+1))
+        return rv
+
+    result = []
+
+    while len(digits) > 0:
+        f = factorial(len(digits) - 1)
+        b = target / f
+        result.append(str(digits[b]))
+        digits.remove(digits[b])
+        target = target % f
+
+    return "".join(result)
+
 def run():
-    p23()
+    p24()
 
 
 if __name__ == "__main__":
