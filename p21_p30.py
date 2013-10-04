@@ -121,8 +121,22 @@ def p24():
 
     return "".join(result)
 
+
+@timeit(times=1)
+def p25():
+
+    target = 1000
+
+    p, n = 0, 1
+    index = 1
+    while True:
+        p, n = n, p + n
+        if len(str(p)) >= target:
+            return index
+        index = index + 1
+
 def run():
-    p24()
+    p25()
 
 
 if __name__ == "__main__":
