@@ -11,7 +11,6 @@ from string import ascii_uppercase
 
 @timeit(times=1)
 def p21():
-
     def get_factors(n):
         rv = set(reduce(list.__add__,
                             ([i, n//i] for i in range(1, int(n**0.5) + 1) if n % i == 0)))
@@ -39,7 +38,6 @@ def p21():
 
 @timeit(times=1)
 def p22():
-
     def get_name_value(name):
         """
         get value of a name
@@ -98,10 +96,8 @@ def p23():
 
 @timeit(times=1)
 def p24():
-
     target = 1000000 - 1
     num_of_digits = 10
-
     digits = range(num_of_digits)
 
     def factorial(n):
@@ -124,9 +120,7 @@ def p24():
 
 @timeit(times=1)
 def p25():
-
     target = 1000
-
     p, n = 0, 1
     index = 1
     while True:
@@ -135,8 +129,40 @@ def p25():
             return index
         index = index + 1
 
+
+@timeit(times=1)
+def p26():
+    target = 1000
+
+    def get_len(num):
+        result = 1
+        remainder = 10 % num
+        while remainder != 1:
+            remainder = (remainder * 10) % num
+            result = result + 1
+        return result
+
+    result = 0
+    max_len = 0
+    for num in range(3, target + 1):
+        if num % 2 == 0 or num % 5 == 0:
+            continue
+
+        len_of_digits = get_len(num)
+        if len_of_digits > max_len:
+            result = num
+            max_len = len_of_digits
+
+    return result
+
+
+@timeit(times=1)
+def p27():
+    pass
+
+
 def run():
-    p25()
+    p26()
 
 
 if __name__ == "__main__":
