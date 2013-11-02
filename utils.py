@@ -16,3 +16,17 @@ def timeit(times=1000):
         return wrapper
 
     return real_decorator
+
+
+def is_prime(num):
+    if num == 1:
+        return False
+    if num == 2:
+        return True
+    upper = num ** 0.5 + 1
+    p = 3
+    while p < upper:
+        if not num % p:
+            return False
+        p = p + 2
+    return True

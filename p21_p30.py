@@ -5,6 +5,7 @@ __author__ = "lycheng"
 __email__ = "lycheng997@gmail.com"
 
 from utils import timeit
+from utils import is_prime 
 
 from requests import get
 from string import ascii_uppercase
@@ -158,11 +159,32 @@ def p26():
 
 @timeit(times=1)
 def p27():
-    pass
+
+    limit = 1000
+
+    result = 0
+    max_count = 0
+
+    for b in range(2, limit):
+        if not is_prime(b):
+            continue
+
+        for a in range(-b, limit):
+            n = 0
+            cur_num = n * n + a * n + b
+            while cur_num > 0 and is_prime(cur_num):
+                n = n + 1
+                cur_num = n * n + a * n + b
+
+            if n > max_count:
+                max_count = n
+                result = a * b
+
+    return result
 
 
 def run():
-    p26()
+    p27()
 
 
 if __name__ == "__main__":
