@@ -183,8 +183,20 @@ def p27():
     return result
 
 
+@timeit(times=1)
+def p28():
+
+    limit = 1001 / 2
+    result = 1
+    for i in range(1, limit + 1):
+        r = ((i * 2) + 1) ** 2
+        result = result + 4 * r - (i * 2) * 6
+
+    return result
+
+
 def run():
-    p27()
+    p28()
 
 
 if __name__ == "__main__":
