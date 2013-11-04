@@ -195,8 +195,20 @@ def p28():
     return result
 
 
+@timeit(times=1)
+def p29():
+
+    upper_limit = 100
+
+    result = set()
+    for a in range(2, upper_limit + 1):
+        for b in range(2, upper_limit + 1):
+            result.add(a ** b)
+    return len(result)
+
+
 def run():
-    p28()
+    p29()
 
 
 if __name__ == "__main__":
