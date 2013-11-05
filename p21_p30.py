@@ -207,8 +207,22 @@ def p29():
     return len(result)
 
 
+@timeit(times=1)
+def p30():
+
+    upper_limit = (9 ** 5) * 6
+    total_sum = 0
+    for num in range(2, upper_limit):
+        cur_sum = sum([int(j) ** 5 for j in str(num)])
+        if cur_sum != num:
+            continue
+        total_sum = total_sum + cur_sum
+
+    return total_sum
+
+
 def run():
-    p29()
+    p30()
 
 
 if __name__ == "__main__":
