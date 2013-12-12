@@ -5,7 +5,7 @@ __author__ = "lycheng"
 __email__ = "lycheng997@gmail.com"
 
 from utils import timeit
-from utils import is_prime 
+from utils import is_prime
 
 from requests import get
 from string import ascii_uppercase
