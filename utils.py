@@ -30,3 +30,10 @@ def is_prime(num):
             return False
         p = p + 2
     return True
+
+def gcd(b, s):
+    b = max(b, s)
+    s = min(b, s)
+    if b % s != 0:
+        return gcd(s, b % s)
+    return s

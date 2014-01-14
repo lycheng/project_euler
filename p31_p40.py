@@ -4,7 +4,7 @@
 __author__ = "lycheng"
 __email__ = "lycheng997@gmail.com"
 
-from utils import timeit
+from utils import timeit, gcd
 
 @timeit(times=1)
 def p31():
@@ -44,8 +44,40 @@ def p32():
     return sum(rv)
 
 
+@timeit(times=1)
+def p33():
+
+    def check(no, de):
+        digit_in_de = {digit for digit in str(denominator)}
+        digit_in_no = {digit for digit in str(nominator)}
+        same_digit = digit_in_de.intersection(digit_in_no)
+        digit_in_de = digit_in_de - same_digit
+        digit_in_no = digit_in_no - same_digit
+
+        if "0" in same_digit or len(same_digit) != 1:
+            return False
+
+        if not digit_in_de or not digit_in_no or "0" in digit_in_de:
+            return False
+
+        if float(digit_in_no.pop()) / float(digit_in_de.pop()) == \
+                float(nominator) / float(denominator):
+            return True
+
+    target_de = 1
+    target_no = 1
+    for denominator in range(12, 100):
+        for nominator in range(11, denominator):
+            if not check(nominator, denominator):
+                continue
+            target_no *= nominator
+            target_de *= denominator
+
+    return target_de / gcd(target_de, target_no)
+
+
 def run():
-    p32()
+    p33()
 
 
 if __name__ == "__main__":
