@@ -37,3 +37,11 @@ def gcd(b, s):
     if b % s != 0:
         return gcd(s, b % s)
     return s
+
+def factorial(num):
+    if num == 0:
+        return 1
+    rv = num
+    for i in range(2, num):
+        rv *= i
+    return rv

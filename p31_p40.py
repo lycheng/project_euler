@@ -4,7 +4,7 @@
 __author__ = "lycheng"
 __email__ = "lycheng997@gmail.com"
 
-from utils import timeit, gcd
+from utils import timeit, gcd, factorial
 
 @timeit(times=1)
 def p31():
@@ -76,8 +76,22 @@ def p33():
     return target_de / gcd(target_de, target_no)
 
 
+@timeit(times=1)
+def p34():
+    target = factorial(9) * 7
+    digit_fact = [factorial(i)for i in range(0, 10)]
+    result = 0
+    for num in range(4, target):
+        sum_of_fact = sum([digit_fact[int(digit)]
+            for digit in str(num)])
+
+        if sum_of_fact != num:
+            continue
+        result += sum_of_fact
+    return result
+
 def run():
-    p33()
+    p34()
 
 
 if __name__ == "__main__":
