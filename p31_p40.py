@@ -4,7 +4,12 @@
 __author__ = "lycheng"
 __email__ = "lycheng997@gmail.com"
 
-from utils import timeit, gcd, factorial
+from utils import factorial
+from utils import is_prime
+from utils import timeit
+from utils import gcd
+
+from collections import defaultdict
 
 @timeit(times=1)
 def p31():
@@ -90,8 +95,33 @@ def p34():
         result += sum_of_fact
     return result
 
+
+@timeit(times=1)
+def p35():
+    limit = 1000000
+    rv = defaultdict(int)
+    for num in range(11, limit, 2):
+        cur_num = "".join(sorted(str(num)))
+        if '5' in cur_num or\
+           '0' in cur_num or\
+           '2' in cur_num or\
+           '4' in cur_num or\
+           '6' in cur_num or\
+           '8' in cur_num:
+            continue
+        if not is_prime(num):
+            continue
+        rv[cur_num] += 1
+
+    count = 5  # 2, 3, 5, 7, 11
+    for key, value in rv.items():
+        if len(key) == value:
+            count += value
+    return count
+
+
 def run():
-    p34()
+    p35()
 
 
 if __name__ == "__main__":
