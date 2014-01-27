@@ -4,6 +4,7 @@
 __author__ = "lycheng"
 __email__ = "lycheng997@gmail.com"
 
+from utils import is_palindromic
 from utils import factorial
 from utils import is_prime
 from utils import timeit
@@ -120,8 +121,19 @@ def p35():
     return count
 
 
+@timeit(times=1)
+def p36():
+    target = 1000000
+    result = 0
+    for num in range(target):
+        if is_palindromic(num) and is_palindromic("{0:b}".format(num)):
+            result += num
+
+    return result
+
+
 def run():
-    p35()
+    p36()
 
 
 if __name__ == "__main__":

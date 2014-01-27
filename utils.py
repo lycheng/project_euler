@@ -31,12 +31,14 @@ def is_prime(num):
         p = p + 2
     return True
 
+
 def gcd(b, s):
     b = max(b, s)
     s = min(b, s)
     if b % s != 0:
         return gcd(s, b % s)
     return s
+
 
 def factorial(num):
     if num == 0:
@@ -45,3 +47,8 @@ def factorial(num):
     for i in range(2, num):
         rv *= i
     return rv
+
+
+def is_palindromic(num):
+    num = str(num)
+    return num[:] == num[::-1]
