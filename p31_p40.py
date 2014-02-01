@@ -11,6 +11,7 @@ from utils import timeit
 from utils import gcd
 
 from collections import defaultdict
+from re import search
 
 @timeit(times=1)
 def p31():
@@ -132,8 +133,32 @@ def p36():
     return result
 
 
+@timeit(times=1)
+def p37():
+    primes = set([2, 3, 5, 7, 11])
+    def is_adv_prime(num):
+        if not is_prime(num):
+            return False
+        primes.add(int(num))
+        for i in range(1, len(num)):
+            if int(num[0:i]) not in primes:
+                return False
+            if int(num[-i:]) not in primes:
+                return False
+        return True
+
+    limit = 1000000
+    result = []
+    for num in range(13, limit, 2):
+        num = str(num)
+        if not is_adv_prime(num):
+            continue
+        result.append(int(num))
+
+    return sum(result)
+
 def run():
-    p36()
+    p37()
 
 
 if __name__ == "__main__":

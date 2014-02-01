@@ -19,6 +19,7 @@ def timeit(times=1000):
 
 
 def is_prime(num):
+    num = int(num)
     if num == 1:
         return False
     if num == 2:
