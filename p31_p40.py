@@ -157,8 +157,20 @@ def p37():
 
     return sum(result)
 
+@timeit(times=1)
+def p38():
+
+    for num in range(9999, 9000, -1):
+        s0 = set([digit for digit in str(num)])
+        s1 = set([digit for digit in str(num * 2)])
+        if len(s0.union(s1)) == 9 and\
+                '0' not in s0 and '0' not in s1:
+            return str(num) + str(num * 2)
+    return 0
+
+
 def run():
-    p37()
+    p38()
 
 
 if __name__ == "__main__":
