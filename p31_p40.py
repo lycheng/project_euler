@@ -159,7 +159,6 @@ def p37():
 
 @timeit(times=1)
 def p38():
-
     for num in range(9999, 9000, -1):
         s0 = set([digit for digit in str(num)])
         s1 = set([digit for digit in str(num * 2)])
@@ -168,9 +167,26 @@ def p38():
             return str(num) + str(num * 2)
     return 0
 
+@timeit(times=1)
+def p39():
+    pass
+
+
+@timeit(times=1)
+def p40():
+    s = ""
+    target = 1000000 + 10
+    cur_index = 1
+    while target > 0:
+        s += str(cur_index)
+        cur_index += 1
+        target -= len(str(cur_index))
+    return int(s[0]) * int(s[9]) * int(s[99]) * int(s[999]) * \
+            int(s[9999]) * int(s[99999]) * int(s[999999])
+
 
 def run():
-    p38()
+    p40()
 
 
 if __name__ == "__main__":
