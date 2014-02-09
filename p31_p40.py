@@ -11,7 +11,6 @@ from utils import timeit
 from utils import gcd
 
 from collections import defaultdict
-from re import search
 
 @timeit(times=1)
 def p31():
