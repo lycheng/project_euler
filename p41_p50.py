@@ -40,8 +40,36 @@ def p41():
     return 0
 
 
+@timeit(times=1)
+def p42():
+
+    fp = open('./problems/p42')
+    content = fp.read()
+
+    words = [word[1:-1] for word in content.split(",")]
+    max_word_len = 0
+    for word in words:
+        max_word_len = max(max_word_len, len(word))
+
+    limit = max_word_len * 26
+    tri_nums = set()
+
+    for i in range(1, 1000000):
+        nth_tri_num = i * (i + 1) / 2
+        tri_nums.add(nth_tri_num)
+        if nth_tri_num > limit:
+            break
+
+    word_count = 0
+    for word in words:
+        word_val = sum([ord(letter) - ord('A') + 1 for letter in word])
+        if word_val in tri_nums:
+            word_count += 1
+
+    return word_count
+
 def run():
-    p41()
+    p42()
 
 
 if __name__ == "__main__":
