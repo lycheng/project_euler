@@ -6,27 +6,14 @@ __email__ = "lycheng997@gmail.com"
 
 from utils import timeit
 from utils import is_prime
+from utils import str_permutation
+
+
+from time import time
 
 
 @timeit(times=1)
 def p41():
-
-    def str_permutation(s):
-        ''' 求一个字符串的所有组合 '''
-        s = str(s)
-        if len(s) == 0:
-            return set()
-        if len(s) == 1:
-            return set([s])
-        if len(s) == 2:
-            return set([s, s[1]+s[0]])
-
-        rv = set()
-        for index in range(len(s)):
-            sub_str_permutation = str_permutation(s[0:index] + s[index+1:])
-            for r in sub_str_permutation:
-                rv.add(s[index]+r)
-        return rv
 
     digits = ['8', '7', '6', '5', '4', '3', '2', '1']
     while len(digits) >= 2:
@@ -68,8 +55,30 @@ def p42():
 
     return word_count
 
+@timeit(times=1)
+def p43():
+
+    rv = str_permutation('0123456789')  # 花费 3 / 4 的时间
+    divisors = [1, 2, 3, 5, 7, 11, 13, 17]
+
+    result = 0
+    for num in rv:
+        if num.startswith('0'):
+            continue
+        is_target = True
+        for i in range(1, 8):
+            sub_num = int(num[i:i+3])
+            if sub_num % divisors[i] > 0:
+                is_target = False
+                break
+        if is_target:
+            result += int(num)
+
+    return result
+
+
 def run():
-    p42()
+    p43()
 
 
 if __name__ == "__main__":
