@@ -8,8 +8,7 @@ from utils import timeit
 from utils import is_prime
 from utils import str_permutation
 
-
-from time import time
+from math import fabs#,sqrt
 
 
 @timeit(times=1)
@@ -77,8 +76,37 @@ def p43():
     return result
 
 
+@timeit(times=1)
+def p44():
+
+    # def is_pentagonal(num):
+        # rv = (sqrt(24 * num + 1) + 1.0) / 6.0
+        # return rv == int(rv)
+
+    pentagonal_num = set([1])
+    def is_pentagonal(num):
+        return num in pentagonal_num
+
+    result = 0
+    is_found = False
+    n = 2
+    while not is_found:
+        num = n * (3 * n  - 1) / 2
+        for i in range(1, n):
+            j = i * (3 * i - 1) / 2
+            if is_pentagonal(num - j) and is_pentagonal(fabs(num - j - j)):
+                is_found = True
+                result = int(fabs(num -j - j))
+                break
+
+        pentagonal_num.add(num)
+        n += 1
+
+    return result
+
+
 def run():
-    p43()
+    p44()
 
 
 if __name__ == "__main__":
