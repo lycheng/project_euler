@@ -105,8 +105,27 @@ def p44():
     return result
 
 
+@timeit(times=1)
+def p45():
+
+    pentagonal= set()
+    hexagonal = set()
+    n = 286
+    while True:
+        tri_num = n * (n + 1) / 2
+        pen_num = 3 * tri_num - 2 * n
+        hex_num = 4 * tri_num - 3 * n
+        pentagonal.add(pen_num)
+        hexagonal.add(hex_num)
+
+        if tri_num in pentagonal and tri_num in hexagonal:
+            return tri_num
+        n = n + 1
+    return -1
+
+
 def run():
-    p44()
+    p45()
 
 
 if __name__ == "__main__":
